@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="Light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <!-- Top Bar -->
+    <header class="header">
+      <div class="header-content">
+        <div class="site-title-container">
+          <span class="cute-tag">PORTFOLIO</span>
+          <h1 class="site-title-container">Hello I'm Ishika,</h1>
+          <p class="site-tagline">Interact with the flower to know more about me.</p>
+        </div>
+
+        <div class="utility-controls">
+          <!-- Mute / Unmute Button -->
+          <button id="soundToggle" class="cute-btn" title="Toggle cute sound effects" aria-label="Toggle sound effects">
+            <span class="btn-icon sound-icon" aria-hidden="true">
+              <!-- Sound ON icon -->
+              <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <!-- Sound OFF icon (hidden by default) -->
+              <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </span>
+          </button>
+
+          <!-- Dark / Light Theme Toggle -->
+          <button id="themeToggle" class="cute-btn" title="Toggle day/night mood" aria-label="Toggle dark mode">
+            <span class="btn-icon theme-icon" aria-hidden="true">
+              <!-- Sun icon -->
+              <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <!-- Moon icon -->
+              <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Section: Left Folder Card + Right 2D Rotating Flower -->
+    <main class="main-content">
+      
+      <!-- ================= LEFT: FOLDER CARD ================= -->
+      <section class="folder-container" aria-label="Portfolio folder card">
+        
+        <!-- TOP 3 FOLDER TABS -->
+        <nav class="folder-tabs tabs-top" role="tablist" aria-label="Top category tabs">
+          <button class="tab-btn active" role="tab" aria-selected="true" data-tab="about" id="tab-about">
+            <span class="tab-title">About Me</span>
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="skills" id="tab-skills">
+            <span class="tab-title">Skills</span>
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="projects" id="tab-projects">
+            <span class="tab-title">Projects</span>
+          </button>
+        </nav>
+
+        <!-- MAIN FOLDER BODY -->
+        <div class="folder-body">
+
+          <!-- CARD 1: ABOUT ME -->
+          <article class="card-panel active" id="card-about" role="tabpanel" aria-labelledby="tab-about">
+            <div class="card-header">
+              <span class="card-badge">Card 01 • Introduction</span>
+              <h2 class="card-title">About Me </h2>
+            </div>
+            <div class="card-content scrollable">
+              <div class="about-hero">
+                <div class="about-intro">
+                  <p class="lead-text">
+                    Hi there! I'm a developer and an aspiring data scientist who enjoys turning complex problems into practical, thoughtfully engineered solutions. My work spans machine learning, data analytics, AI-powered applications, and software development, with a focus on understanding the problem before choosing the technology.
+                    <p class="lead_text">I enjoy exploring how data can reveal patterns, how predictive models can support better decisions, and how intelligent systems can become genuinely useful products. am a passionate creator who loves blending thoughtful design with interactive technology. 
+                    I build experiences that are delightful, accessible, and meaningful.
+                    </p>
+                  </p>
+                  <p class="sub-text">
+                    I'm continuously learning, experimenting with new technologies, and looking for opportunities to contribute to meaningful causes alongside people who enjoy solving challenging problems.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Quick Highlights -->
+              <div class="highlights-grid">
+                <div class="highlight-item">
+                  <span class="item-icon">⟟</span>
+                  <div>
+                    <strong>Based in</strong>
+                    <p>India</p>
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <span class="item-icon">⚯ ͛</span>
+                  <div>
+                    <strong>Studying</strong>
+                    <p>Your Degree or Field</p>
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <span class="item-icon">♡</span>
+                  <div>
+                    <strong>Currently loving</strong>
+                    <p>Matcha lattes</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-action-bar">
+                <a href="#card-contact" class="btn-action go-to-card" data-target="contact">Say Hello!</a>
+                <a href="#card-projects" class="btn-action-outline go-to-card" data-target="projects">See My Work 📁</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2: SKILLS -->
+          <article class="card-panel" id="card-skills" role="tabpanel" aria-labelledby="tab-skills">
+            <div class="card-header">
+              <span class="card-badge">Card 02 • Capabilities</span>
+              <h2 class="card-title">Skills & Toolbox </h2>
+            </div>
+            <div class="card-content scrollable">
+              <div class="skill-category">
+                <h3 class="skill-cat-title">Languages</h3>
+                <div class="pill-group">
+                  <span class="pill-badge">Python</span>
+                  <span class="pill-badge">C/C++</span>
+                  <span class="pill-badge">SQL</span>
+                  <span class="pill-badge">HTML/CSS</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3 class="skill-cat-title">Backend & Application Development</h3>
+                <div class="pill-group">
+                  <span class="pill-badge">FastAPI</span>
+                  <span class="pill-badge">Flask</span>
+                  <span class="pill-badge">MySQL</span>
+                  <span class="pill-badge">PostgreSQL</span>
+                  <span class="pill-badge">Node.js</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3 class="skill-cat-title">AI & ML Technologies</h3>
+                <div class="pill-group">
+                  <span class="pill-badge">scikit-learn</span>
+                  <span class="pill-badge">PyTorch</span>
+                  <span class="pill-badge">Retrieval-Augmented Generation (RAG)</span>
+                  <span class="pill-badge">pandas</span>
+                  <span class="pill-badge">NumPy</span>
+                  <span class="pill-badge">Matplotlib</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3 class="skill-cat-title">Tools & Platforms</h3>
+                <div class="pill-group">
+                  <span class="pill-badge">Git/GitHub</span>
+                  <span class="pill-badge">Jupyter Notebook</span>
+                  <span class="pill-badge">Docker</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3 class="skill-cat-title">UI/UX & Design</h3>
+                <div class="pill-group">
+                  <span class="pill-badge">Figma & FigJam</span>
+                  <span class="pill-badge">Wireframing & Prototyping</span>
+                  <span class="pill-badge">Visual Identity</span>
+                  <span class="pill-badge">Responsive Layouts</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3: PROJECTS -->
+          <article class="card-panel" id="card-projects" role="tabpanel" aria-labelledby="tab-projects">
+            <div class="card-header">
+              <span class="card-badge">Card 03 • Work</span>
+              <h2 class="card-title">Projects</h2>
+            </div>
+            <div class="card-content scrollable">
+              <div class="project-list">
+                <div class="project-card">
+                  <div class="project-header">
+                    <span class="project-num">01</span>
+                    <h3 class="project-name">Finsight</h3>
+                    <div class="project-links">
+                      <a href="https://github.com/mimihere33/FinSight" target="_blank" rel="noopener" class="icon-link" title="Source code">
+                        <span>Github ↗</span>
+                      </a>
+                      <a href="https://fin-sight-g7gn.vercel.app" target="_blank" rel="noopener" class="icon-link demo" title="Live demo">
+                        <span>Demo ↗</span>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="project-desc">
+                    A personal finance application that combines transaction management with spending analytics to make financial patterns easier to understand.
+                  </p>
+                  <div class="project-tags">
+                    <span class="mini-tag">React</span>
+                    <span class="mini-tag">FastAPI</span>
+                    <span class="mini-tag">PostgreSQL</span>
+                  </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                  <div class="project-header">
+                    <span class="project-num">02</span>
+                    <h3 class="project-name">OfferLens</h3>
+                    <div class="project-links">
+                      <a href="https://github.com/mimihere33/customer-targeting-roi-optimizer" target="_blank" rel="noopener" class="icon-link">
+                        <span>Code ↗</span>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="project-desc">
+                    OfferLens is a customer targeting and campaign profitability framework that combines predictive modeling with financial simulation to evaluate promotional strategies.
+                  </p>
+                  <div class="project-tags">
+                    <span class="mini-tag">Python</span>
+                    <span class="mini-tag">scikit-learn</span>
+                  </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                  <div class="project-header">
+                    <span class="project-num">03</span>
+                    <h3 class="project-name">Quack Buddy</h3>
+                    <div class="project-links">
+                      <a href="https://github.com/mimihere33/Quack-Buddy" target="_blank" rel="noopener" class="icon-link">
+                        <span>Code ↗</span>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="project-desc">
+                    Quack Buddy is an interactive desktop companion that combines lightweight productivity tools with a playful virtual pet experience.
+                  </p>
+                  <div class="project-tags">
+                    <span class="mini-tag">Electron.js</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4: RESUME -->
+          <article class="card-panel" id="card-resume" role="tabpanel" aria-labelledby="tab-resume">
+            <div class="card-header">
+              <span class="card-badge">Card 04 • CV</span>
+              <h2 class="card-title">Resume</h2>
+            </div>
+            <div class="card-content scrollable">
+              <div class="resume-download-box">
+                <div>
+                  <strong>Resume</strong>
+                </div>
+                <a href="https://drive.google.com/file/d/1qIv_Va_fy082MXMVC8FFVjLtH3O0ClAC/view?usp=sharing" class="btn-action download-btn" >
+                  View Resume 🔗
+                </a>
+              </div>
+
+              <div class="resume-section">
+                <span class="cute-tag">"The biggest incompetence is being inhumane" - Byeon Eun A</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5: CONTACT ME -->
+          <article class="card-panel" id="card-contact" role="tabpanel" aria-labelledby="tab-contact">
+            <div class="card-header">
+              <span class="card-badge">Card 05 • Get In Touch</span>
+              <h2 class="card-title">Let's Connect! 💌</h2>
+            </div>
+            <div class="card-content scrollable">
+              <p class="contact-intro">
+                Feel free to reach out!
+              </p>
+              <div class="contact-card-box">
+                <div class="contact-info">
+                  <span class="mail-icon">📫</span>
+                  <span class="mail-address" id="userEmail">ishikashrivastava2310@gmail.com</span>
+                </div>
+                <button class="btn-action-sm copy-btn" id="copyEmailBtn" title="Copy email address">
+                  Copy 📋
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div> <!-- /folder-body -->
+
+        <!-- BOTTOM 3 FOLDER TABS -->
+        <nav class="folder-tabs tabs-bottom" role="tablist" aria-label="Bottom category tabs">
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="resume" id="tab-resume">
+            <span class="tab-title">Resume</span>
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="contact" id="tab-contact">
+            <span class="tab-title">Contact Me</span>
+          </button>
+        </nav>
+
+      </section>
+
+      <!-- ================= RIGHT: 2D ROTATING FLOWER ================= -->
+      <section class="flower-section" aria-label="Interactive 2D 6-petal flower">
+        <div class="flower-wrapper">
+          
+          <div class="flower-caption">
+            <span class="flower-hint">Hover a petal to switch cards!</span>
+          </div>
+
+          <!-- Rotating Flower Wheel -->
+          <div class="flower-stage">
+            <div class="flower-aura" aria-hidden="true"></div>
+            
+            <div class="flower-wheel" id="flowerWheel" aria-label="Interactive 6-petal rotating flower">
+              <svg class="flower-svg" viewBox="-160 -160 320 320" xmlns="http://www.w3.org/2000/svg">
+                <!-- Petal 1: About Me -->
+                <g class="petal petal-1 active" data-target="about" transform="rotate(0)">
+                  <path class="petal-shape" d="M -26 -30 C -52 -60 -48 -118 0 -130 C 48 -118 52 -60 26 -30 Z" />
+                </g>
+
+                <!-- Petal 2: Skills -->
+                <g class="petal petal-2" data-target="skills" transform="rotate(72)">
+                  <path class="petal-shape" d="M -26 -30 C -52 -60 -48 -118 0 -130 C 48 -118 52 -60 26 -30 Z" />
+                </g>
+
+                <!-- Petal 3: Projects -->
+                <g class="petal petal-3" data-target="projects" transform="rotate(144)">
+                  <path class="petal-shape" d="M -26 -30 C -52 -60 -48 -118 0 -130 C 48 -118 52 -60 26 -30 Z" />
+                </g>
+
+                <!-- Petal 4: Resume -->
+                <g class="petal petal-4" data-target="resume" transform="rotate(216)">
+                  <path class="petal-shape" d="M -26 -30 C -52 -60 -48 -118 0 -130 C 48 -118 52 -60 26 -30 Z" />
+                </g>
+
+                <!-- Petal 5: Contact Me  -->
+                <g class="petal petal-6" data-target="contact" transform="rotate(288)">
+                  <path class="petal-shape" d="M -26 -30 C -52 -60 -48 -118 0 -130 C 48 -118 52 -60 26 -30 Z" />
+                </g>
+
+                <!-- Flower Center Disc -->
+                <circle class="flower-center" cx="0" cy="0" r="44" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Status badge below flower showing current hovered/active petal -->
+          <div class="active-petal-indicator" id="petalIndicator">
+            Current: <span class="indicator-name">About Me</span>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p class="footer-note">Have a nice day🌸</p>
+        <div class="social-links" aria-label="Social Profiles">
+          
+          <!-- GitHub Link -->
+          <a href="https://github.com/mimihere33" target="_blank" rel="noopener noreferrer" class="social-btn github-btn" title="Visit my GitHub" aria-label="GitHub profile">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span class="social-label">GitHub</span>
+          </a>
+
+          <!-- LinkedIn Link -->
+          <a href="https://www.linkedin.com/in/ishikashrivastava1243" target="_blank" rel="noopener noreferrer" class="social-btn linkedin-btn" title="Connect on LinkedIn" aria-label="LinkedIn profile">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span class="social-label">LinkedIn</span>
+          </a>
+        </div>
+        <p class="copyright-text">© <span id="currentYear">2026</span> • Personal Portfolio</p>
+      </div>
+    </footer>
+
+  </div> <!-- /page-wrapper -->
+
+  <script src="script.js"></script>
+</body>
+</html>

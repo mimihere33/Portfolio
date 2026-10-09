@@ -1,0 +1,1339 @@
+/* ===================================================================
+   PORTFOLIO STYLESHEET (Light & Dark Mode, Folder Card & 2D Flower)
+   =================================================================== */
+
+/* --- ROOT VARIABLES (Design System) --- */
+:root {
+  /* Fonts */
+  --font-main: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-cute: 'Gaegu', cursive, sans-serif;
+
+  /* Light Theme Palette */
+  --bg-image:url('light.jpg');
+  --text-main: #2d2938;
+  --text-muted: #666175;
+  --text-light: #8e8a9d;
+
+  /* Card & Folder Surfaces */
+  --card-bg: #ffffff;
+  --card-inner: #fdfcfa;
+  --card-border: #e8e2dc;
+  --card-shadow: 0 16px 38px rgba(92, 77, 60, 0.08), 0 4px 12px rgba(92, 77, 60, 0.04);
+  --card-shadow-hover: 0 20px 48px rgba(92, 77, 60, 0.12);
+
+  /* Tab Colors */
+  --tab-bg: #f3ece4;
+  --tab-text: #696256;
+  --tab-active-bg: #ffffff;
+  --tab-active-text: #2d2938;
+  --tab-border: #dfd7cc;
+
+  /* Pastel Petal Accent Colors */
+  --petal-about: #ff8fab;
+  --petal-skills: #f4a261;
+  --petal-projects: #457b9d;
+  --petal-resume: #70c1b3;
+  --petal-experience: #9d8df1;
+  --petal-contact: #ea9ab2;
+
+  /* Interactive Elements */
+  --accent-color: #f472b6;
+  --accent-hover: #ec4899;
+  --btn-bg: #f9f5f0;
+  --btn-border: #e5ded6;
+  --btn-hover-bg: #ffffff;
+  --primary-btn-bg: #2d2938;
+  --primary-btn-text: #ffffff;
+
+  /* Ambient Blobs */
+  --blob-1: rgba(255, 182, 193, 0.35);
+  --blob-2: rgba(181, 234, 215, 0.35);
+  --blob-3: rgba(226, 209, 249, 0.35);
+
+  --flower-petal-color: #f6e39d;
+  --flower-petal-hover: #faedb5;
+  --flower-petal-stroke: #ebd387;
+  --flower-center-color: #cf956d;
+  --flower-center-stroke: #b9815a;
+  --flower-label-color: #724c2c;
+  --flower-aura: rgba(246, 227, 157, 0.35);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.2, 0, 0, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-bounce: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- DARK THEME OVERRIDES --- */
+[data-theme="dark"] {
+  --bg-image:url('dark.jpg');
+  --text-main: #f3f0fa;
+  --text-muted: #b1a9c4;
+  --text-light: #7c7493;
+
+  --card-bg: #1c1929;
+  --card-inner: #161421;
+  --card-border: #2e2944;
+  --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 22px 50px rgba(0, 0, 0, 0.6);
+
+  --tab-bg: #151221;
+  --tab-text: #9f96b6;
+  --tab-active-bg: #1c1929;
+  --tab-active-text: #ffffff;
+  --tab-border: #2b2540;
+
+  --btn-bg: #1f1b30;
+  --btn-border: #322b4e;
+  --btn-hover-bg: #29243f;
+  --primary-btn-bg: #ff8fab;
+  --primary-btn-text: #191426;
+
+  --blob-1: rgba(255, 143, 171, 0.14);
+  --blob-2: rgba(112, 193, 179, 0.12);
+  --blob-3: rgba(157, 141, 241, 0.15);
+
+  --flower-petal-color: #ffffff;
+  --flower-petal-hover: #f0f0f5;
+  --flower-petal-stroke: #e4e1eb;
+  --flower-center-color: #f4b942;
+  --flower-center-stroke: #dba02b;
+  --flower-label-color: #3b354a;
+  --flower-aura: rgba(255, 255, 255, 0.18);
+}
+
+/* --- BASE STYLES & RESET --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+@keyframes floatBlobs {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 40px) scale(1.08); }
+  100% { transform: translate(-30px, -20px) scale(0.95); }
+}
+
+/* --- PAGE CONTAINER --- */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- HEADER SECTION --- */
+.header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.site-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cute-tag {
+  font-family: var(--font-cute);
+  font-size: 1.25rem;
+  color: var(--accent-color);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.site-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.8vw, 2.75rem);
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.highlight-text {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(120deg, #ff8fab 0%, #f4a261 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.site-tagline {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* --- UTILITY BUTTONS (Sound & Dark Mode) --- */
+.utility-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cute-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--btn-bg);
+  color: var(--text-main);
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform var(--transition-bounce), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  user-select: none;
+}
+
+.cute-btn:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.cute-btn:active {
+  transform: none;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+
+.btn-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Sound Icon States */
+.icon-sound-off {
+  display: none;
+}
+
+body.sound-muted .icon-sound-on {
+  display: none;
+}
+
+body.sound-muted .icon-sound-off {
+  display: block;
+}
+
+body.sound-muted #soundToggle .state-text {
+  opacity: 0.7;
+}
+
+/* Mood Icon States */
+.icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .icon-moon {
+  display: block;
+}
+
+/* ===================================================================
+   MAIN LAYOUT (Side-by-Side: Folder on Left, Flower on Right)
+   =================================================================== */
+.main-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.95fr);
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+/* ===================================================================
+   LEFT: FOLDER CARD DESIGN
+   =================================================================== */
+.folder-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  filter: drop-shadow(0 14px 30px rgba(0,0,0,0.06));
+}
+
+/* FOLDER TABS (Top & Bottom) */
+.folder-tabs {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0 1.5rem;
+  z-index: 2;
+}
+
+.tabs-top {
+  margin-bottom: -1.5px; /* Blend with card border */
+}
+
+.tabs-bottom {
+  margin-top: -1.5px; /* Blend with bottom card border */
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--tab-bg);
+  color: var(--tab-text);
+  border: 1.5px solid var(--tab-border);
+  padding: 0.65rem 1.15rem;
+  font-family: var(--font-main);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  user-select: none;
+}
+
+/* Protruding tab shape */
+.tabs-top .tab-btn {
+  border-radius: 14px 14px 0 0;
+  border-bottom: none;
+}
+
+.tabs-bottom .tab-btn {
+  border-radius: 0 0 14px 14px;
+  border-top: none;
+}
+
+.tab-btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--text-main);
+  transform: translateY(-2px);
+}
+
+.tabs-bottom .tab-btn:hover {
+  transform: translateY(2px);
+}
+
+/* Active Tab Highlight & Connection */
+.tab-btn.active {
+  background: var(--card-bg);
+  color: var(--tab-active-text);
+  border-color: var(--card-border);
+  font-weight: 800;
+  z-index: 3;
+}
+
+.tabs-top .tab-btn.active {
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.04);
+}
+
+.tabs-bottom .tab-btn.active {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+/* Decorative Tab indicator pill */
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.tabs-top .tab-btn.active::after {
+  top: 2px;
+}
+
+.tabs-bottom .tab-btn.active::after {
+  bottom: 2px;
+}
+
+.tab-emoji {
+  font-size: 1.05rem;
+}
+
+/* MAIN FOLDER BODY */
+.folder-body {
+  position: relative;
+  background: var(--card-bg);
+  border: 1.5px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2rem 2.2rem;
+  min-height: 480px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  overflow: hidden;
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+/* Folder vintage stamp & clip */
+.folder-inner-decor {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.folder-clip {
+  font-size: 1.35rem;
+  transform: rotate(-15deg);
+}
+
+.folder-stamp {
+  font-family: var(--font-cute);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-light);
+  border: 1px dashed var(--card-border);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  opacity: 0.6;
+}
+
+/* CARD PANELS */
+.card-panel {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  animation: cardFadeIn 0.3s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+.card-panel.active {
+  display: flex;
+}
+
+@keyframes cardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-header {
+  margin-bottom: 1.25rem;
+}
+
+.card-badge {
+  display: inline-block;
+  font-family: var(--font-cute);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  color: var(--text-main);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* Scrollable Container inside Card */
+.card-content.scrollable {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 360px;
+  padding-right: 0.75rem;
+}
+
+/* Cute Aesthetic Scrollbar */
+.card-content.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.card-content.scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.card-content.scrollable::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 99px;
+}
+.card-content.scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light);
+}
+
+/* ===================================================================
+   PANEL 1: ABOUT ME STYLING
+   =================================================================== */
+
+.about-intro .lead-text {
+  font-size: 1.02rem;
+  color: var(--text-main);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.about-intro .sub-text {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.highlight-item {
+  background: var(--card-inner);
+  border: 1px solid var(--card-border);
+  padding: 0.75rem 0.95rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: transform var(--transition-fast);
+}
+
+.highlight-item:hover {
+  transform: translateY(-2px);
+}
+
+.highlight-item .item-icon {
+  font-size: 1.4rem;
+}
+
+.highlight-item strong {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.highlight-item p {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.card-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Action Buttons */
+.btn-action, .btn-action-outline, .btn-action-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-bounce);
+  border: none;
+}
+
+.btn-action {
+  background: var(--primary-btn-bg);
+  color: var(--primary-btn-text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-action:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.btn-action-outline {
+  background: transparent;
+  color: var(--text-main);
+  border: 1.5px solid var(--card-border);
+}
+
+.btn-action-outline:hover {
+  background: var(--btn-hover-bg);
+  border-color: var(--text-main);
+  transform: translateY(-2px);
+}
+
+.btn-action-sm {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.84rem;
+  border-radius: 8px;
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  color: var(--text-main);
+}
+
+.btn-action-sm:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* ===================================================================
+   PANEL 2: SKILLS STYLING
+   =================================================================== */
+.skill-category {
+  margin-bottom: 1.25rem;
+}
+
+.skill-cat-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.6rem;
+}
+
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill-badge {
+  background: var(--card-inner);
+  border: 1px solid var(--card-border);
+  padding: 0.4rem 0.8rem;
+  border-radius: 99px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+  cursor: default;
+}
+
+.pill-badge:hover {
+  background: var(--btn-hover-bg);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* ===================================================================
+   PANEL 3: PROJECTS STYLING
+   =================================================================== */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.project-card {
+  background: var(--card-inner);
+  border: 1px solid var(--card-border);
+  padding: 1.15rem;
+  border-radius: 14px;
+  transition: all var(--transition-fast);
+}
+
+.project-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+}
+
+.project-num {
+  font-family: var(--font-cute);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.project-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  flex: 1;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: all var(--transition-fast);
+}
+
+.icon-link:hover {
+  color: var(--text-main);
+  border-color: var(--text-main);
+}
+
+.icon-link.demo {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.mini-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  background: var(--card-bg);
+  border-radius: 6px;
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+}
+
+/* ===================================================================
+   PANEL 4: RESUME STYLING
+   =================================================================== */
+.resume-download-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--card-inner);
+  border: 1px dashed var(--accent-color);
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  margin-bottom: 1.4rem;
+}
+
+.resume-download-box strong {
+  display: block;
+  font-size: 0.96rem;
+  color: var(--text-main);
+}
+
+.resume-download-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.resume-section {
+  margin-bottom: 1.4rem;
+}
+
+.resume-subtitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.85rem;
+}
+
+.timeline-block {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  margin-bottom: 1.15rem;
+}
+
+.timeline-block::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: -14px;
+  left: 6px;
+  width: 2px;
+  background: var(--card-border);
+}
+
+.timeline-block:last-child::before {
+  display: none;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  border: 2px solid var(--card-bg);
+  flex-shrink: 0;
+  margin-top: 3px;
+  box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.2);
+}
+
+.timeline-meta {
+  font-family: var(--font-cute);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.timeline-heading {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.timeline-place {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.resume-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.resume-list li {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.resume-list li::before {
+  content: '🌸';
+  position: absolute;
+  left: 0;
+  font-size: 0.75rem;
+  top: 3px;
+}
+
+/* ===================================================================
+   PANEL 6: CONTACT ME STYLING
+   =================================================================== */
+.contact-intro {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.contact-card-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-inner);
+  border: 1px solid var(--card-border);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.mail-icon {
+  font-size: 1.3rem;
+}
+
+.mail-address {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  user-select: all;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: var(--card-inner);
+  border: 1.5px solid var(--card-border);
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.2);
+}
+
+.send-message-btn {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+}
+
+/* ===================================================================
+   RIGHT: 2D ROTATING FLOWER (6 PETALS)
+   =================================================================== */
+.flower-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  user-select: none;
+}
+
+.flower-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.flower-caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 0.35rem 0.85rem;
+  border-radius: 99px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.sparkle-icon {
+  font-size: 0.9rem;
+  animation: pulseSparkle 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseSparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.3) rotate(20deg); }
+}
+
+.flower-hint {
+  font-family: var(--font-cute);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.flower-stage {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flower-aura {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: var(--flower-aura);
+  filter: blur(40px);
+  z-index: 0;
+  transition: background var(--transition-smooth);
+}
+
+/* ROTATING FLOWER WHEEL */
+.flower-wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* Slow hypnotic rotation until hovered */
+  animation: rotateFlower 24s linear infinite;
+  transform-origin: center center;
+  cursor: grab;
+}
+
+/* Pause smoothly when hovering the flower wheel or any petal */
+.flower-wheel:hover,
+.flower-wheel.paused {
+  animation-play-state: paused;
+}
+
+@keyframes rotateFlower {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.flower-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* PETAL STYLES & INTERACTION */
+.petal {
+  cursor: pointer;
+  transform-origin: 0 0;
+  transition: filter var(--transition-fast);
+}
+
+/*.petal-shape {
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
+  transition: transform var(--transition-bounce), filter var(--transition-bounce), stroke-width var(--transition-fast);
+  transform-origin: 0 0;
+}*/
+.petal-shape {
+  fill: var(--flower-petal-color);
+  stroke: var(--flower-petal-stroke);
+  stroke-width: 2px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+  transition: transform var(--transition-bounce), fill var(--transition-smooth), stroke var(--transition-smooth), filter var(--transition-bounce);
+  transform-origin: 0 0;
+}
+
+/*[data-theme="dark"] .petal-shape {
+  stroke: rgba(255, 255, 255, 0.4);
+}*/
+[data-theme="dark"] .petal-shape {
+  fill: var(--flower-petal-color); /* Turns white in dark theme */
+  stroke: var(--flower-petal-stroke);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.petal-highlight {
+  fill: #ffffff;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.petal-label {
+  font-family: var(--font-cute);
+  font-size: 14px;
+  font-weight: 700;
+  fill: #ffffff;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  letter-spacing: 0.5px;
+}
+
+/* Hovered / Active Petal Effect */
+/*.petal:hover .petal-shape,
+.petal.active .petal-shape {
+  transform: scale(1.1);
+  stroke: #ffffff;
+  stroke-width: 3.5px;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+}*/
+.petal:hover .petal-shape,
+.petal.active .petal-shape {
+  fill: var(--flower-petal-hover);
+  transform: scale(1.08);
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16));
+}
+
+/*[data-theme="dark"] .petal:hover .petal-shape,
+[data-theme="dark"] .petal.active .petal-shape {
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.45));
+}*/
+[data-theme="dark"] .petal:hover .petal-shape,
+[data-theme="dark"] .petal.active .petal-shape {
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.65));
+}
+.flower-center {
+  fill: var(--flower-center-color);
+  stroke: var(--flower-center-stroke);
+  stroke-width: 2px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+  transition: fill var(--transition-smooth), stroke var(--transition-smooth);
+  pointer-events: none;
+}
+.petal:hover .petal-highlight,
+.petal.active .petal-highlight {
+  opacity: 1;
+}
+
+/* FLOWER CENTER CORE (Daisy smiling face) */
+.flower-core-outer {
+  fill: var(--flower-center-outer);
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+  transition: fill var(--transition-smooth);
+}
+
+.flower-core {
+  fill: var(--flower-center-inner);
+  transition: fill var(--transition-smooth);
+}
+
+.flower-face {
+  pointer-events: none;
+}
+
+/* Active Petal Status Indicator */
+.active-petal-indicator {
+  font-family: var(--font-cute);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 0.4rem 1.1rem;
+  border-radius: 99px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.indicator-name {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* ===================================================================
+   FOOTER (Social Links & Copyright)
+   ================================================================== */
+.footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px dashed var(--card-border);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-note {
+  font-family: var(--font-cute);
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 1.15rem;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1.5px solid var(--card-border);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  transition: transform var(--transition-bounce), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.social-icon {
+  width: 19px;
+  height: 19px;
+  transition: transform var(--transition-fast);
+}
+
+.social-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+.social-btn:hover .social-icon {
+  transform: scale(1.15);
+}
+
+/* Specific Social Hover Accents */
+.github-btn:hover {
+  border-color: #24292e;
+}
+[data-theme="dark"] .github-btn:hover {
+  border-color: #f0f6fc;
+}
+
+.linkedin-btn:hover {
+  border-color: #0077b5;
+  color: #0077b5;
+}
+
+.instagram-btn:hover {
+  border-color: #e1306c;
+  color: #e1306c;
+}
+
+.copyright-text {
+  font-size: 0.84rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+   =================================================================== */
+@media (max-width: 960px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .flower-section {
+    order: -1; /* Display flower on top of card on mobile so user sees interactive element! */
+    margin-bottom: 0.5rem;
+  }
+
+  .flower-stage {
+    width: 270px;
+    height: 270px;
+  }
+
+  .flower-aura {
+    width: 240px;
+    height: 240px;
+  }
+
+  .folder-body {
+    padding: 1.5rem 1.4rem;
+    min-height: auto;
+  }
+
+  .folder-tabs {
+    padding: 0 0.8rem;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.84rem;
+    white-space: nowrap;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .utility-controls {
+    align-self: flex-start;
+  }
+
+  .folder-tabs {
+    gap: 0.2rem;
+  }
+
+  .tab-title {
+    font-size: 0.8rem;
+  }
+
+  .tab-emoji {
+    font-size: 0.95rem;
+  }
+
+  .card-action-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
